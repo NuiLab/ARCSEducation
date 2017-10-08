@@ -6,21 +6,25 @@ using Utility;
 public class DisplayXORModel : MonoBehaviour, IVirtualButtonEventHandler
 {
 	// instance variables
-	private GameObject xorModel;
+	//private GameObject xorModel;
 	private GameObject vbButton;
+	private GameObject modelContainer;
+	//private GameObject table;
+
 	private bool modelVisible;
 	private ModelUtility modelUtil;
 
 	// Use this for initialization
 	void Start ()
 	{
-		xorModel = GameObject.Find("LogicalXorModelMerged");
-		modelUtil = new ModelUtility(xorModel);
-
+		//xorModel = GameObject.Find("LogicalXorModelMerged");
+		//table = GameObject.Find("LogicalXORTable");
+		modelContainer = GameObject.Find("XorModels");
 		modelVisible = false;
 
 		vbButton = GameObject.Find("DisplayXORModelButton");
 		vbButton.GetComponent<VirtualButtonBehaviour> ().RegisterEventHandler (this);
+		modelUtil = new ModelUtility(modelContainer);
 	
 	}
 	

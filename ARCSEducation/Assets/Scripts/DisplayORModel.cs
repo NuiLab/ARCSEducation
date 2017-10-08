@@ -7,21 +7,26 @@ using Utility;
 
 public class DisplayORModel : MonoBehaviour, IVirtualButtonEventHandler  {
 
-	GameObject ORGameObject;
-	private bool OrModelVisible; 
+	//private GameObject ORGameObject;
 	private GameObject VButtonObj;
-  	ModelUtility modelUtility;
+	//private GameObject table;
+	private GameObject modelContainer;
+
+	private bool OrModelVisible; 
+  	private ModelUtility modelUtility;
 
 	// Use this for initialization
 	void Start () {
-		ORGameObject = GameObject.Find ("LogicalORModel");
-        modelUtility = new ModelUtility(ORGameObject);
+		//ORGameObject = GameObject.Find ("LogicalORModel");
+        //table = GameObject.Find("LogicalORTable");
+        modelContainer = GameObject.Find("OrModels");
 
         //modelUtility.Hidden(true);
         OrModelVisible = false;
 
 		VButtonObj = GameObject.Find ("DisplayORModelButton");
 		VButtonObj.GetComponent<VirtualButtonBehaviour> ().RegisterEventHandler (this);
+        modelUtility = new ModelUtility(modelContainer);
 
 
 	}

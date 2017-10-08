@@ -5,25 +5,28 @@ using Utility;
 
 public class DisplayANDModel : MonoBehaviour, IVirtualButtonEventHandler
 {
-  	GameObject ANDmodel;
-	bool modelIsVisible;
-  	//GameObject table;
-	GameObject AndVbButton;
+  	//private GameObject ANDmodel;
+  	//private GameObject table;
+  	private GameObject modelContainer;
+	private GameObject AndVbButton;
+	private bool modelIsVisible;
 
   	ModelUtility modelUtility;
 
 	// Use this for initialization
 	void Start ()
 	{
-    	ANDmodel = GameObject.Find("LogicalANDModel");
-    	modelUtility = new ModelUtility(ANDmodel);
+    	//ANDmodel = GameObject.Find("LogicalANDModel");
+    	//table = GameObject.Find("LogicalANDTable");
 
 		// start with the model not displaying
 		//ANDmodel.GetComponent<Renderer> ().enabled = false;
+		modelContainer = GameObject.Find("AndModels");
 		modelIsVisible = false;
     	
 		AndVbButton = GameObject.Find ("DisplayANDModelButton");
 		AndVbButton.GetComponent<VirtualButtonBehaviour> ().RegisterEventHandler (this);
+    	modelUtility = new ModelUtility(modelContainer);
 
 	}
 	
