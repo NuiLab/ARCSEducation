@@ -14,11 +14,11 @@ public class VB_LogicalTable : MonoBehaviour, IVirtualButtonEventHandler {
 
 	// Use this for initialization
 	void Start () {
-		VButtonObject = GameObject.Find ("ORBooleanTableButton");
-		table = GameObject.Find ("LogicalORTableSketch");
+		VButtonObject = GameObject.Find ("ReferenceButton");
+		table = GameObject.Find ("LogicTable");
 
 		VButtonObject.GetComponent<VirtualButtonBehaviour> ().RegisterEventHandler (this);
-		table.GetComponent<MeshRenderer> ().enabled = false;
+		table.GetComponent<Renderer> ().enabled = false;
 
 	}
 	
@@ -30,11 +30,11 @@ public class VB_LogicalTable : MonoBehaviour, IVirtualButtonEventHandler {
 	public void OnButtonPressed (VirtualButtonAbstractBehaviour vb) {
 		
 		Debug.Log ("Button down");
-		table.GetComponent<MeshRenderer> ().enabled = true;
+		table.GetComponent<Renderer> ().enabled = true;
 	}
 
 	public void OnButtonReleased(VirtualButtonAbstractBehaviour vb) {
 		Debug.Log ("Button up");
-		table.GetComponent<MeshRenderer> ().enabled = false;
+		table.GetComponent<Renderer> ().enabled = false;
 	}
 }
