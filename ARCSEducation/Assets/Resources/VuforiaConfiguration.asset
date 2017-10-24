@@ -64,7 +64,7 @@ MonoBehaviour:
     modelTransformEnabled: 0
     modelTransform: {x: 0, y: 0.1, z: -0.1}
   webcam:
-    deviceNameSetInEditor: 'HD Pro Webcam C920 #4'
+    deviceNameSetInEditor: HD Pro Webcam C920
     flipHorizontally: 0
     turnOffWebCam: 0
     renderTextureLayer: 30

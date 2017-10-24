@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Vuforia;
+using UnityEngine.SceneManagement;
 
 public class OkayButton : MonoBehaviour, IVirtualButtonEventHandler {
 
@@ -27,12 +28,16 @@ public class OkayButton : MonoBehaviour, IVirtualButtonEventHandler {
 		rend.enabled = true;
 		rend.sharedMaterial = material[0];
 		labelText = label.GetComponent<TextMesh>().text.ToString(); 
-		selected = false;	
+		selected = false;
+
+        PlayerPrefs.SetString("Difficulty", "Null");	
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		toggle();
+        setDifficulty();
+        Debug.Log("Current difficulty is: " + PlayerPrefs.GetString("Difficulty"));
 	}
 
 	public void OnButtonPressed (VirtualButtonAbstractBehaviour vb) {
@@ -41,6 +46,7 @@ public class OkayButton : MonoBehaviour, IVirtualButtonEventHandler {
             return;
         else {
             Debug.Log("OnButtonPressed enabled");
+            LoadActivityScene();
         }
         //toggleMaterialOfButton();
 	}
@@ -50,10 +56,10 @@ public class OkayButton : MonoBehaviour, IVirtualButtonEventHandler {
 	}
 
     public bool toggle(){
-        Debug.Log("toggle was called()");
-        Debug.Log("EasyBut val " + easyBut.selected);
-        Debug.Log("MedBut val " + medBut.selected);
-        Debug.Log(hardBut.selected);
+        //Debug.Log("toggle was called()");
+        //Debug.Log("EasyBut val " + easyBut.selected);
+        //Debug.Log("MedBut val " + medBut.selected);
+        // Debug.Log(hardBut.selected);
         if (easyBut.selected | medBut.selected | hardBut.selected) {
             rend.sharedMaterial = material[1];
         } else
@@ -64,5 +70,28 @@ public class OkayButton : MonoBehaviour, IVirtualButtonEventHandler {
         else 
             enabled = false;
         return true;
-    }    
+    }
+
+    public void LoadActivityScene(){
+        SceneManager.LoadScene(1);
+    }   
+
+    public void setDifficulty(){
+        if (easyBut.selected) {
+            PlayerPrefs.SetString("Difficulty", "Easy");
+            Debug.Log("Easy difficulty selected");
+            medBut.selected = false;
+            hardBut.selected = false;
+        } else if (medBut.selected) {
+            PlayerPrefs.SetString("Difficulty", "Medium");
+            Debug.Log("Medium difficulty selected");
+            easyBut.selected = false;
+            hardBut.selected = false;
+        } else if (hardBut.selected) {
+            PlayerPrefs.SetString("Difficulty", "Hard");
+            Debug.Log("Hard difficulty selected");
+            easyBut.selected = false;
+            medBut.selected = false;
+        }
+    } 
 }

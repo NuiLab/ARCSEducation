@@ -27,13 +27,13 @@ public class EasyButton : MonoBehaviour, IVirtualButtonEventHandler {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        toggleMaterialOfButton();
 	}
 
 	public void OnButtonPressed (VirtualButtonAbstractBehaviour vb) {
 		Debug.Log("Easy Button Pressed");
 
-        toggleMaterialOfButton();
+        selected = !selected;
     }
 	public void OnButtonReleased (VirtualButtonAbstractBehaviour vb) {
 		Debug.Log("Easy Button released");
@@ -45,7 +45,6 @@ public class EasyButton : MonoBehaviour, IVirtualButtonEventHandler {
         } else {
             rend.sharedMaterial = material[0];
         }
-        selected = !selected;
         return selected;
     }
 }

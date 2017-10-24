@@ -27,12 +27,12 @@ public class MediumButton : MonoBehaviour, IVirtualButtonEventHandler{
 	
 	// Update is called once per frame
 	void Update () {
-		
+        toggleMaterialOfButton();
 	}
 
 	public void OnButtonPressed (VirtualButtonAbstractBehaviour vb) {
 		Debug.Log("Medium Button Pressed");
-        toggleMaterialOfButton();
+        selected = !selected;
 	}
 
 	public void OnButtonReleased (VirtualButtonAbstractBehaviour vb) {
@@ -45,7 +45,8 @@ public class MediumButton : MonoBehaviour, IVirtualButtonEventHandler{
         } else {
             rend.sharedMaterial = material[0];
         }
-        selected = !selected;
+        
         return selected;
     }
+
 }
