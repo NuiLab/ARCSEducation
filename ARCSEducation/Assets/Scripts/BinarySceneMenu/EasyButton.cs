@@ -12,6 +12,9 @@ public class EasyButton : MonoBehaviour, IVirtualButtonEventHandler {
 	private GameObject label;
 	public bool selected;
 
+    public MediumButton medBut;
+    public HardButton hardBut;
+
 	// Use this for initialization
 	void Start () {
 	    vB = this.transform.parent.gameObject;
@@ -32,8 +35,7 @@ public class EasyButton : MonoBehaviour, IVirtualButtonEventHandler {
 
 	public void OnButtonPressed (VirtualButtonAbstractBehaviour vb) {
 		Debug.Log("Easy Button Pressed");
-
-        selected = !selected;
+        ButtonSelected();
     }
 	public void OnButtonReleased (VirtualButtonAbstractBehaviour vb) {
 		Debug.Log("Easy Button released");
@@ -46,5 +48,11 @@ public class EasyButton : MonoBehaviour, IVirtualButtonEventHandler {
             rend.sharedMaterial = material[0];
         }
         return selected;
+    }
+
+    public void ButtonSelected() {
+        selected = true;
+        medBut.selected = false;
+        hardBut.selected = false;
     }
 }

@@ -12,6 +12,9 @@ public class MediumButton : MonoBehaviour, IVirtualButtonEventHandler{
 	private GameObject label;
 	public bool selected;
 
+    public EasyButton easyBut;
+    public HardButton hardBut;
+
 	// Use this for initialization
 	void Start () {
 	    vB = this.transform.parent.gameObject;
@@ -32,7 +35,7 @@ public class MediumButton : MonoBehaviour, IVirtualButtonEventHandler{
 
 	public void OnButtonPressed (VirtualButtonAbstractBehaviour vb) {
 		Debug.Log("Medium Button Pressed");
-        selected = !selected;
+        ButtonSelected();
 	}
 
 	public void OnButtonReleased (VirtualButtonAbstractBehaviour vb) {
@@ -47,6 +50,12 @@ public class MediumButton : MonoBehaviour, IVirtualButtonEventHandler{
         }
         
         return selected;
+    }
+
+    public void ButtonSelected(){
+        selected = true;
+        easyBut.selected = false;
+        hardBut.selected = false;
     }
 
 }

@@ -42,8 +42,9 @@ public class OkayButton : MonoBehaviour, IVirtualButtonEventHandler {
 
 	public void OnButtonPressed (VirtualButtonAbstractBehaviour vb) {
 		Debug.Log("Okay Button Pressed");
-        if( !enabled)
-            return;
+        if( !enabled){
+            Debug.Log("Enabled value for Okay button is: " + enabled);
+        }
         else {
             Debug.Log("OnButtonPressed enabled");
             LoadActivityScene();
