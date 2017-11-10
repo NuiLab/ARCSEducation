@@ -12,8 +12,21 @@ public class ChoiceButton : MonoBehaviour, IVirtualButtonEventHandler {
     private GameObject label;
     public bool selected;
     
+    private string thisChoiceVal;
+
     
-    public string thisChoiceVal;
+    public string currentChoice 
+    {
+        get 
+        {
+            return thisChoiceVal;
+        }
+
+        set 
+        {
+            thisChoiceVal = value;
+        }
+    }
 
 
 	// Use this for initialization
