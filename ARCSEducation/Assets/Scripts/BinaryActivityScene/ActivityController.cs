@@ -16,24 +16,24 @@ public class ActivityController : MonoBehaviour {
     private string choiceSelected;
 
     private List<string> questions;
-    private string difficulty = "Medium";
+    private string difficulty;
 
     public int questionIndex = 0;
 
     private bool routineBusy = false;
+
+    private string mode;
 
     void onAwake() {
     }
 	// Use this for initialization
 	void Start () {
 		choiceSelected = "";
+    mode = PlayerPrefs.GetString("GameMode");
+    Debug.Log("Current game mode is" + mode);
     answers.initQuestionResponseSetup();
     initQuestions();
     iterate();
-    // nextQuestion();
-    // nextQuestion();
-    // nextQuestion();
-    // nextQuestion();
 	}
 	
 	// Update is called once per frame
@@ -84,14 +84,14 @@ public class ActivityController : MonoBehaviour {
                                           "1111 0001 1010 1011"  // 61867
                                           };
 
-      string diff = difficulty;
-      //string diff = PlayerPrefs.GetString("Difficulty");
+      //string diff = difficulty;
+      difficulty = PlayerPrefs.GetString("Difficulty");
       //Debug.Log("Assigning problem set to questions");
-      if (diff.Equals("Easy"))
+      if (difficulty.Equals("Easy"))
         questions.AddRange(easyBinaryArray);
-      else if (diff.Equals("Medium"))
+      else if (difficulty.Equals("Medium"))
         questions.AddRange(mediumBinaryArray);
-      else if (diff.Equals("Hard"))
+      else if (difficulty.Equals("Hard"))
         questions.AddRange(hardBinaryArray);
 
       target_question.setText(questions[0]);
@@ -113,7 +113,6 @@ public class ActivityController : MonoBehaviour {
     bool ans = answers.verifyChoice(choiceSelected);
     if (ans) {
       target_question.setText("Correct");
-      Debug.Log("We are here 109");
       yield return new WaitForSeconds(5);
       choiceSelected = "";
       resetButtons();
@@ -121,7 +120,6 @@ public class ActivityController : MonoBehaviour {
       routineBusy = false;
     } else {
       target_question.setText("Wrong");
-      Debug.Log("We are here 114");
       yield return new WaitForSeconds(5);
       choiceSelected = "";
       resetButtons();
