@@ -20,6 +20,8 @@ public class ActivityController : MonoBehaviour {
 
     public int questionIndex = 0;
 
+    private bool routineBusy = false;
+
     void onAwake() {
     }
 	// Use this for initialization
@@ -37,9 +39,14 @@ public class ActivityController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         setChoice();
+        if (!choiceSelected.Equals("") && !routineBusy){
+          StartCoroutine(checkAnswer());
+
+        }
 	}
 
     private void setChoice(){
+      Debug.Log("We are here 44");
         if (button_A.selected) 
             choiceSelected = "A";
         else if (button_B.selected)
@@ -101,20 +108,34 @@ public class ActivityController : MonoBehaviour {
       }
     }
 
-  private void checkAnswer() {
-    if (choiceSelected.Equals(""))
-      return;
-    else {
-      bool ans = answers.verifyChoice(choiceSelected);
-      if (ans) {
-        target_question.setText("Correct");
-        System.Threading.Thread.Sleep(1000);
-        nextQuestion();
-      } else {
-        target_question.setText("Wrong");
-        System.Threading.Thread.Sleep(1000);
-        nextQuestion();
-      }
+  private IEnumerator checkAnswer() {
+    routineBusy = true;
+    bool ans = answers.verifyChoice(choiceSelected);
+    if (ans) {
+      target_question.setText("Correct");
+      Debug.Log("We are here 109");
+      yield return new WaitForSeconds(5);
+      choiceSelected = "";
+      resetButtons();
+      nextQuestion();
+      routineBusy = false;
+    } else {
+      target_question.setText("Wrong");
+      Debug.Log("We are here 114");
+      yield return new WaitForSeconds(5);
+      choiceSelected = "";
+      resetButtons();
+      nextQuestion();
+      routineBusy = false;
     }
+  
+  
+  }
+
+  private void resetButtons() {
+    button_A.selected = false;
+    button_B.selected = false;
+    button_C.selected = false;
+    button_D.selected = false;
   }
 }

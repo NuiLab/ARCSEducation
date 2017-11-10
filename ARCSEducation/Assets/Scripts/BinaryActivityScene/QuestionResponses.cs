@@ -18,6 +18,11 @@ public class QuestionResponses : MonoBehaviour {
   private string diff = "Medium";
 
   public ActivityController controller;
+
+  private string[] easyAnswerKey = new string[] {"A", "C", "C", "C"};
+  private string[] mediumAnswerKey = new string[] {"A", "B", "D", "A"};
+  private string[] hardAnswerKey = new string[] {"C", "D", "B", "C"};
+  private string[] currentAnswerKey;
 	// Use this for initialization
 	void Start () {
     //binaryAnswers[0].Clear();
@@ -41,13 +46,21 @@ public class QuestionResponses : MonoBehaviour {
     }
   }
   public void initBinaryAnswers() {
-    if (diff.Equals("Easy"))
+    if (diff.Equals("Easy")) {
       initBinEasyAnswers();
-    else if (diff.Equals("Medium"))
+      currentAnswerKey = easyAnswerKey;
+    }
+    else if (diff.Equals("Medium")) {
       initBinMedAnswers();
-    else if (diff.Equals("Hard"))
+      currentAnswerKey = mediumAnswerKey;
+    }
+    else if (diff.Equals("Hard")) {
       initBinHardAnswers();
+      currentAnswerKey = hardAnswerKey;
+    }
   }
+
+
 
   public void initBinEasyAnswers() {
     string[] easyAnswers0 = new string[] {"0", "2", "3", "4"};
@@ -80,7 +93,7 @@ public class QuestionResponses : MonoBehaviour {
   }
 
   public void initBinHardAnswers() {
-    string[] ans0 = new string[]{"32481", "1832", "49321", "65000"}; // 47857
+    string[] ans0 = new string[]{"32481", "1832", "47857", "65000"}; // 47857
     string[] ans1 = new string[]{"19239", "21349", "52345", "33309"}; // 33309
     string[] ans2 = new string[]{"8080", "8019", "8018", "8011"}; // 8019
     string[] ans3 = new string[]{"61768", "53234", "61867", "60867"}; // 61867
@@ -107,6 +120,11 @@ public class QuestionResponses : MonoBehaviour {
   }
 
   public bool verifyChoice(string choice){
+    int qIndex = controller.questionIndex;
+    Debug.Log("Current answer from key is: " + currentAnswerKey[qIndex] + " and user's choice was " + choice);
+    if (!currentAnswerKey[qIndex].Equals(choice))
+      return false;
+
     return true;
   }
 }
