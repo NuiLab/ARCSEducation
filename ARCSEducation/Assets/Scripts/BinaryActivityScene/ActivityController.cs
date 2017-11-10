@@ -11,25 +11,27 @@ public class ActivityController : MonoBehaviour {
     public ChoiceButton button_C;
     public ChoiceButton button_D;
     public BinaryQuestion target_question;
+    public QuestionResponses answers;
 
     private string choiceSelected;
 
     private List<string> questions;
     private string difficulty = "Medium";
 
-    private int questionIndex = 0;
+    public int questionIndex = 0;
 
     void onAwake() {
     }
 	// Use this for initialization
 	void Start () {
 		choiceSelected = "";
+    answers.initQuestionResponseSetup();
     initQuestions();
     iterate();
-    nextQuestion();
-    nextQuestion();
-    nextQuestion();
-    nextQuestion();
+    // nextQuestion();
+    // nextQuestion();
+    // nextQuestion();
+    // nextQuestion();
 	}
 	
 	// Update is called once per frame
@@ -86,18 +88,33 @@ public class ActivityController : MonoBehaviour {
         questions.AddRange(hardBinaryArray);
 
       target_question.setText(questions[0]);
+      answers.nextAnswerPool();
     }
 
     private void nextQuestion(){
       int nextIndex = ++questionIndex;
       if (nextIndex < questions.Count) {
         target_question.setText(questions[nextIndex]);
+        answers.nextAnswerPool();
       } else {
         target_question.setText("Game Over");
       }
     }
 
-    private void initAnswers() {
-
+  private void checkAnswer() {
+    if (choiceSelected.Equals(""))
+      return;
+    else {
+      bool ans = answers.verifyChoice(choiceSelected);
+      if (ans) {
+        target_question.setText("Correct");
+        System.Threading.Thread.Sleep(1000);
+        nextQuestion();
+      } else {
+        target_question.setText("Wrong");
+        System.Threading.Thread.Sleep(1000);
+        nextQuestion();
+      }
     }
+  }
 }

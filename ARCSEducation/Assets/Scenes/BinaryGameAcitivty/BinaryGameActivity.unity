@@ -2306,6 +2306,8 @@ MonoBehaviour:
   button_C: {fileID: 1154789239}
   button_D: {fileID: 2062258553}
   target_question: {fileID: 1168567487}
+  answers: {fileID: 1632075454}
+  questionIndex: 0
 --- !u!43 &1519539601
 Mesh:
   m_ObjectHideFlags: 0
@@ -2640,6 +2642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c251150e4843c4b5aa4ce22519a5f7ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 1502335853}
 --- !u!1001 &1843468037
 Prefab:
   m_ObjectHideFlags: 0
