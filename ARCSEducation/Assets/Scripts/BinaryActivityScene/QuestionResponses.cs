@@ -36,7 +36,8 @@ public class QuestionResponses : MonoBehaviour {
     diff = PlayerPrefs.GetString("Difficulty");
     mode = PlayerPrefs.GetString("Mode");
     clearAnswerPools();
-    initBinaryAnswers();
+    //initBinaryAnswers();
+    initAnswers(mode);
   }
 	
 	// Update is called once per frame
@@ -47,6 +48,16 @@ public class QuestionResponses : MonoBehaviour {
     foreach (List<string> list in binaryAnswers) {
       list.Clear();
     }
+  }
+
+  private string initAnswers(string md) {
+    string currentMode = md;
+    if (md.Equals("Binary"))
+      initBinaryAnswers();
+    else
+      initHexAnswers();
+
+    return currentMode;
   }
   public void initBinaryAnswers() {
     if (diff.Equals("Easy")) {
@@ -59,6 +70,21 @@ public class QuestionResponses : MonoBehaviour {
     }
     else if (diff.Equals("Hard")) {
       initBinHardAnswers();
+      currentAnswerKey = hardAnswerKey;
+    }
+  }
+
+  public void initHexAnswers() {
+    if (diff.Equals("Easy")) {
+      initHexEasyAnswers();
+      currentAnswerKey = easyAnswerKey;
+    }
+    else if (diff.Equals("Medium")) {
+      initHexMedAnswers();
+      currentAnswerKey = mediumAnswerKey;
+    }
+    else if (diff.Equals("Hard")) {
+      initHexHardAnswers();
       currentAnswerKey = hardAnswerKey;
     }
   }
@@ -95,7 +121,7 @@ public class QuestionResponses : MonoBehaviour {
     
   }
 
-  public void initBinMedAnswers() {
+  public void initHexMedAnswers() {
     string[] ans0 = new string[] {"AF", "64", "22", "B5"}; // AF
     string[] ans1 = new string[] {"4D", "D8", "86", "B"}; // D8
     string[] ans2 = new string[] {"5C", "C8", "2B", "29"}; // 29
@@ -108,8 +134,8 @@ public class QuestionResponses : MonoBehaviour {
     
   }
 
-  public void initHexMedAnswers() {
-    string[] ans0 = new string[] {"AF", "100", "34", "181"}; // 175
+  public void initBinMedAnswers() {
+    string[] ans0 = new string[] {"175", "100", "34", "181"}; // 175
     string[] ans1 = new string[] {"77", "216", "134", "11"}; // 216
     string[] ans2 = new string[] {"92", "200", "43", "41"}; // 41
     string[] ans3 = new string[] {"191", "201", "132", "182"}; // 191
@@ -135,7 +161,7 @@ public class QuestionResponses : MonoBehaviour {
 
   public void initHexHardAnswers() {
     string[] ans0 = new string[]{"7EE1", "0728", "BAF1", "FDE8"}; // BAF1
-    string[] ans1 = new string[]{"4B27", "5365", "CC79", "0CED"}; // 0CED
+    string[] ans1 = new string[]{"4B27", "5365", "CC79", "821D"}; // 0CED
     string[] ans2 = new string[]{"1F90", "1F53", "1F52", "1F4B"}; // 1F53
     string[] ans3 = new string[]{"F148", "CFF2", "F1AB", "EDC3"}; // F148
 
