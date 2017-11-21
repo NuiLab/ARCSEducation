@@ -23,3 +23,5 @@
 /Users/hamiltonchevez/Git/ARCSEducation/ARCSEducation/Temp/bin/Debug/Mono.Cecil.Pdb.dll
 /Users/hamiltonchevez/Git/ARCSEducation/ARCSEducation/Temp/bin/Debug/Mono.Cecil.Mdb.dll
 /Users/hamiltonchevez/Git/ARCSEducation/ARCSEducation/Temp/bin/Debug/TextMeshPro-1.0.55.2017.1.0b12.dll
+/Users/hamiltonchevez/Git/ARCSEducation/ARCSEducation/Temp/bin/Debug/UnityEngine.VR.dll
+/Users/hamiltonchevez/Git/ARCSEducation/ARCSEducation/Temp/bin/Debug/ICSharpCode.NRefactory.dll
