@@ -74,7 +74,7 @@ public class OkayButton : MonoBehaviour, IVirtualButtonEventHandler {
     }
 
     public void LoadActivityScene(){
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }   
 
     public void setDifficulty(){

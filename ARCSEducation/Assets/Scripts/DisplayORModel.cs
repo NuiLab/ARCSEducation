@@ -12,17 +12,18 @@ public class DisplayORModel : MonoBehaviour, IVirtualButtonEventHandler  {
 	//private GameObject table;
 	private GameObject modelContainer;
 
-	private bool OrModelVisible; 
+	public bool OrModelVisible; 
   	private ModelUtility modelUtility;
+
+  public GameObject ORmodel;
+  public GameObject ORtable;
 
 	// Use this for initialization
 	void Start () {
 		//ORGameObject = GameObject.Find ("LogicalORModel");
         //table = GameObject.Find("LogicalORTable");
-        modelContainer = GameObject.Find("OrModels");
-
-        //modelUtility.Hidden(true);
-        OrModelVisible = false;
+    modelContainer = GameObject.Find("OrModels");
+    hideModels();
 
 		VButtonObj = GameObject.Find ("DisplayORModelButton");
 		VButtonObj.GetComponent<VirtualButtonBehaviour> ().RegisterEventHandler (this);
@@ -31,25 +32,26 @@ public class DisplayORModel : MonoBehaviour, IVirtualButtonEventHandler  {
 
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	public void hideModels() {
+    ORmodel.GetComponent<MeshRenderer>().enabled = false;
+    ORtable.GetComponent<MeshRenderer>().enabled = false;
+    OrModelVisible = false;
+  }
+
+  public void showModels() {
+    ORmodel.GetComponent<MeshRenderer>().enabled = true;
+    ORtable.GetComponent<MeshRenderer>().enabled = true;
+    OrModelVisible = true;
+  }
 
 
 
 	public void OnButtonPressed (VirtualButtonAbstractBehaviour vb) {
-
-
-		Debug.Log ("Logical OR Button down");
 		if (OrModelVisible){
-			modelUtility.Hidden (false);
+			hideModels();
         } else {
-        	modelUtility.Hidden(true);
+        	showModels();
         }
-
-        OrModelVisible = !OrModelVisible;
-
 	}
 
 

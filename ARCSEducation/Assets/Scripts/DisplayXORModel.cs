@@ -14,13 +14,17 @@ public class DisplayXORModel : MonoBehaviour, IVirtualButtonEventHandler
 	private bool modelVisible;
 	private ModelUtility modelUtil;
 
+  public GameObject xorModel;
+  public GameObject xorTable;
+  private MeshRenderer[] renderers;
+
 	// Use this for initialization
 	void Start ()
 	{
 		//xorModel = GameObject.Find("LogicalXorModelMerged");
 		//table = GameObject.Find("LogicalXORTable");
 		modelContainer = GameObject.Find("XorModels");
-		modelVisible = false;
+    hideModels();
 
 		vbButton = GameObject.Find("DisplayXORModelButton");
 		vbButton.GetComponent<VirtualButtonBehaviour> ().RegisterEventHandler (this);
@@ -34,17 +38,28 @@ public class DisplayXORModel : MonoBehaviour, IVirtualButtonEventHandler
 	
 	}
 
+  public void showModels(){
+    xorModel.GetComponent<MeshRenderer>().enabled = true;
+    xorTable.GetComponent<MeshRenderer>().enabled = true;
+    modelVisible = true;
+  }
+
+  public void hideModels(){
+    xorModel.GetComponent<MeshRenderer>().enabled = false;
+    xorTable.GetComponent<MeshRenderer>().enabled = false;
+    modelVisible = false;
+  }
+
 
 	public void OnButtonPressed (VirtualButtonAbstractBehaviour vb) {
 
 		Debug.Log("Logical XOR Button down");
 		if (modelVisible){
-			modelUtil.Hidden(false);
+			hideModels();
 		} else {
-			modelUtil.Hidden(true);
+			showModels();
 		}
 
-		modelVisible = !modelVisible;
 	}
 
 	public void OnButtonReleased(VirtualButtonAbstractBehaviour vb) {

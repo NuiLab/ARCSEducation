@@ -34,7 +34,7 @@ public class QuestionResponses : MonoBehaviour {
   public void initQuestionResponseSetup() {
     textMesh = GetComponent<TextMeshPro>();
     diff = PlayerPrefs.GetString("Difficulty");
-    mode = PlayerPrefs.GetString("Mode");
+    mode = PlayerPrefs.GetString("GameMode");
     clearAnswerPools();
     //initBinaryAnswers();
     initAnswers(mode);

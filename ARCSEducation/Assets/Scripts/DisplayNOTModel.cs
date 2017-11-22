@@ -10,8 +10,11 @@ public class DisplayNOTModel : MonoBehaviour, IVirtualButtonEventHandler
 	private GameObject vbButton;
 	//private GameObject table;
 
-	private bool modelVisible;
+	public bool modelVisible;
 	private ModelUtility modelUtil;
+
+  public GameObject notModel;
+  public GameObject notTable;
 
 	// Use this for initialization
 	void Start ()
@@ -19,8 +22,7 @@ public class DisplayNOTModel : MonoBehaviour, IVirtualButtonEventHandler
 		//notModel = GameObject.Find("LogicalNotModelMerged");
 		//table = GameObject.Find("LogicalNOTTable");
 		modelContainer = GameObject.Find("NotModels");
-		modelVisible = false;
-
+    hideModels();
 		vbButton = GameObject.Find("DisplayNOTModelButton");
 		vbButton.GetComponent<VirtualButtonBehaviour>().RegisterEventHandler (this);
 		modelUtil = new ModelUtility(modelContainer);
@@ -33,15 +35,26 @@ public class DisplayNOTModel : MonoBehaviour, IVirtualButtonEventHandler
 	
 	}
 
+  public void hideModels() {
+    notModel.GetComponent<MeshRenderer>().enabled = false;
+    notTable.GetComponent<MeshRenderer>().enabled = false;
+    modelVisible = false;
+  }
+
+  public void showModels(){
+    notModel.GetComponent<MeshRenderer>().enabled = true;
+    notModel.GetComponent<MeshRenderer>().enabled = true;
+    modelVisible = false;
+  }
+
 	public void OnButtonPressed (VirtualButtonAbstractBehaviour vb) {
 
 		Debug.Log("Logical NOT Button down");
 		if (modelVisible)
-			modelUtil.Hidden(false);
-		else 
-			modelUtil.Hidden(true);
+      hideModels();
+		else
+      showModels(); 
 
-		modelVisible = !modelVisible;
 	}
 
 	public void OnButtonReleased (VirtualButtonAbstractBehaviour vb) {

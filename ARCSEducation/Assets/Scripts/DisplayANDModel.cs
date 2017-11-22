@@ -13,6 +13,9 @@ public class DisplayANDModel : MonoBehaviour, IVirtualButtonEventHandler
 
   	ModelUtility modelUtility;
 
+  public GameObject andModel;
+  public GameObject andTable;
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -22,7 +25,7 @@ public class DisplayANDModel : MonoBehaviour, IVirtualButtonEventHandler
 		// start with the model not displaying
 		//ANDmodel.GetComponent<Renderer> ().enabled = false;
 		modelContainer = GameObject.Find("AndModels");
-		modelIsVisible = false;
+    hideModels();
     	
 		AndVbButton = GameObject.Find ("DisplayANDModelButton");
 		AndVbButton.GetComponent<VirtualButtonBehaviour> ().RegisterEventHandler (this);
@@ -31,11 +34,18 @@ public class DisplayANDModel : MonoBehaviour, IVirtualButtonEventHandler
 	}
 	
 	// Update is called once per frame
-	void Update ()
-	{
-	
-	}
 
+  public void hideModels() {
+    andModel.GetComponent<MeshRenderer>().enabled = false;
+    andTable.GetComponent<MeshRenderer>().enabled = false;
+    modelIsVisible = false;
+  }
+
+  public void showModels() {
+    andModel.GetComponent<MeshRenderer>().enabled = true;
+    andTable.GetComponent<MeshRenderer>().enabled = true;
+    modelIsVisible = false;
+  }
   public void OnButtonPressed (VirtualButtonAbstractBehaviour vb) {
     //modelUtility.disableAllModels();
 
@@ -43,15 +53,12 @@ public class DisplayANDModel : MonoBehaviour, IVirtualButtonEventHandler
 		Debug.Log("AND Model Virtual Button Down");
 		if (modelIsVisible) {
 			//ANDmodel.GetComponent<Renderer> ().enabled = true;
-			modelUtility.Hidden(false);
+			hideModels();
 		}
 		else {
-			modelUtility.Hidden(true);
+			showModels();
 			//ANDmodel.GetComponent<Renderer> ().enabled = false;
 		}
-
-		modelIsVisible = !modelIsVisible;
-
 
   }
 
