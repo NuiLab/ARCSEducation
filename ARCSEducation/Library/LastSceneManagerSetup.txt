@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/BinaryGameAcitivty/BinaryGameMenu.unity
+- path: Assets/Scenes/LogicCircuitReferences/LogicCircuitModels.unity
   isLoaded: 1
   isActive: 1
