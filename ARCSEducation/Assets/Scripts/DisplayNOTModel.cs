@@ -43,8 +43,8 @@ public class DisplayNOTModel : MonoBehaviour, IVirtualButtonEventHandler
 
   public void showModels(){
     notModel.GetComponent<MeshRenderer>().enabled = true;
-    notModel.GetComponent<MeshRenderer>().enabled = true;
-    modelVisible = false;
+    notTable.GetComponent<MeshRenderer>().enabled = true;
+    modelVisible = true;
   }
 
 	public void OnButtonPressed (VirtualButtonAbstractBehaviour vb) {

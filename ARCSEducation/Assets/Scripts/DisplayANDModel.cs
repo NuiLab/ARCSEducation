@@ -44,7 +44,7 @@ public class DisplayANDModel : MonoBehaviour, IVirtualButtonEventHandler
   public void showModels() {
     andModel.GetComponent<MeshRenderer>().enabled = true;
     andTable.GetComponent<MeshRenderer>().enabled = true;
-    modelIsVisible = false;
+    modelIsVisible = true;
   }
   public void OnButtonPressed (VirtualButtonAbstractBehaviour vb) {
     //modelUtility.disableAllModels();
